@@ -34,6 +34,15 @@ RUN apt-get autoremove --purge -y curl && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
 RUN chmod g+rwX /opt/bitnami
 RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
+
+# Replace with latest version of the keycloak-config-cli
+RUN rm /opt/bitnami/keycloak-config-cli/keycloak-config-cli.jar
+COPY keycloak-config-cli.jar /opt/bitnami/keycloak-config-cli/keycloak-config-cli.jar
+
+# Remove old versions of keycloak-config-cli to address vulns
+RUN rm /opt/bitnami/keycloak-config-cli/keycloak-config-cli-24.0.5.jar
+RUN rm /opt/bitnami/keycloak-config-cli/keycloak-config-cli-25.0.1.jar
+
 RUN ln -sf /opt/bitnami/keycloak-config-cli/keycloak-config-cli.jar /opt/keycloak-config-cli.jar
 
 ENV APP_VERSION="6.4.0" \
