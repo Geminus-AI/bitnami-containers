@@ -16,7 +16,8 @@ ENV HOME="/" \
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends \
  ca-certificates curl libbsd0 libbz2-1.0 libedit2 libffi8 libgcc-s1 libgmp10 libgnutls30 libhogweed6 libicu74 libidn2-0 libldap2 liblz4-1 liblzma5 libmd0 libnettle8 libp11-kit0 libpcre3 libreadline8 libsasl2-2 libsqlite3-0 libssl3 libstdc++6 libtasn1-6 libtinfo6 libunistring5 libuuid1 libxml2 libxslt1.1 libzstd1 locales procps zlib1g
 RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     COMPONENTS=( \
@@ -40,6 +41,18 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 RUN update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX && \
     DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
 RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
+
+RUN echo "deb http://archive.ubuntu.com/ubuntu jammy main universe" >> /etc/apt/sources.list && \
+    apt update && \
+    apt install -y libldap-2.5-0 && \
+    sed -i '/jammy/d' /etc/apt/sources.list && \
+    apt clean
+
+RUN echo "deb http://old-releases.ubuntu.com/ubuntu lunar main universe" >> /etc/apt/sources.list && \
+    apt update && \
+    apt install -y libicu72 && \
+    sed -i '/lunar/d' /etc/apt/sources.list && \
+    apt clean
 
 COPY rootfs /
 RUN /opt/bitnami/scripts/postgresql/postunpack.sh
