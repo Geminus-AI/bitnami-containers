@@ -50,5 +50,6 @@ ENV APP_VERSION="6.4.0" \
     PATH="/opt/bitnami/java/bin:$PATH"
 
 WORKDIR /opt/bitnami/keycloak-config-cli
-USER 1001
+# ubuntu user is 1000
+USER 1000
 ENTRYPOINT [ "java", "-jar", "./keycloak-config-cli.jar" ]
