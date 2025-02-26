@@ -46,6 +46,6 @@ ENV APP_VERSION="26.1.2" \
 
 EXPOSE 8080 8443 9000
 
-USER 1001
+USER 1002
 ENTRYPOINT [ "/opt/bitnami/scripts/keycloak/entrypoint.sh" ]
 CMD [ "/opt/bitnami/scripts/keycloak/run.sh" ]
