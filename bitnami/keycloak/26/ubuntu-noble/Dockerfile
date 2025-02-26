@@ -12,6 +12,9 @@ ENV HOME="/" \
     OS_FLAVOUR="debian-12" \
     OS_NAME="linux"
 
+# Remove the default "ubuntu" user with id 1000
+RUN userdel -f ubuntu
+
 COPY prebuildfs /
 SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 # Install required system packages and dependencies
@@ -46,6 +49,6 @@ ENV APP_VERSION="26.1.2" \
 
 EXPOSE 8080 8443 9000
 
-USER 1002
+USER keycloak
 ENTRYPOINT [ "/opt/bitnami/scripts/keycloak/entrypoint.sh" ]
 CMD [ "/opt/bitnami/scripts/keycloak/run.sh" ]
