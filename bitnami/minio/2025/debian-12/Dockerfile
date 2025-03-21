@@ -17,8 +17,8 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN apt-get update && apt-get install -y ca-certificates curl jq procps
 RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     COMPONENTS=( \
-      "minio-client-2025.2.21-0-linux-${OS_ARCH}-debian-12" \
-      "minio-2025.2.28-0-linux-${OS_ARCH}-debian-12" \
+      "minio-client-2025.3.12-0-linux-${OS_ARCH}-debian-12" \
+      "minio-2025.3.12-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -37,7 +37,7 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 COPY rootfs /
 RUN /opt/bitnami/scripts/minio-client/postunpack.sh
 RUN /opt/bitnami/scripts/minio/postunpack.sh
-ENV APP_VERSION="2025.2.28" \
+ENV APP_VERSION="2025.3.12" \
     BITNAMI_APP_NAME="minio" \
     PATH="/opt/bitnami/minio-client/bin:/opt/bitnami/minio/bin:$PATH"
 
