@@ -42,6 +42,8 @@ COPY assets/keycloak-config-cli.jar /opt/bitnami/keycloak-config-cli/keycloak-co
 # Remove old versions of keycloak-config-cli to address vulns
 RUN rm /opt/bitnami/keycloak-config-cli/keycloak-config-cli-24.0.5.jar
 RUN rm /opt/bitnami/keycloak-config-cli/keycloak-config-cli-25.0.1.jar
+RUN rm /opt/bitnami/keycloak-config-cli/keycloak-config-cli-26.0.5.jar
+RUN rm /opt/bitnami/keycloak-config-cli/keycloak-config-cli-26.1.0.jar
 
 RUN ln -sf /opt/bitnami/keycloak-config-cli/keycloak-config-cli.jar /opt/keycloak-config-cli.jar
 
