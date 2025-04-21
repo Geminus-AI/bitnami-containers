@@ -43,6 +43,9 @@ ENV APP_VERSION="7.4.2" \
     BITNAMI_APP_NAME="redis" \
     PATH="/opt/bitnami/common/bin:/opt/bitnami/redis/bin:$PATH"
 
+COPY assets/wait-for-port /opt/bitnami/common/bin/wait-for-port
+RUN chmod +x /opt/bitnami/common/bin/wait-for-port
+
 EXPOSE 6379
 
 USER 1001
