@@ -47,6 +47,9 @@ ENV APP_VERSION="26.1.3" \
     JAVA_HOME="/opt/bitnami/java" \
     PATH="/opt/bitnami/common/bin:/opt/bitnami/java/bin:/opt/bitnami/keycloak/bin:$PATH"
 
+COPY assets/wait-for-port /opt/bitnami/common/bin/wait-for-port
+RUN chmod +x /opt/bitnami/common/bin/wait-for-port
+
 EXPOSE 8080 8443 9000
 
 USER keycloak
