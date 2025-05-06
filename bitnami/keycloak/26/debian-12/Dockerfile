@@ -21,9 +21,9 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN apt-get update && apt-get install -y ca-certificates curl krb5-user libaio1t64 procps zlib1g
 RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     COMPONENTS=( \
-      "wait-for-port-1.0.8-13-linux-${OS_ARCH}-debian-12" \
-      "jre-21.0.6-10-1-linux-${OS_ARCH}-debian-12" \
-      "keycloak-26.1.3-0-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.8-15-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.7-9-0-linux-${OS_ARCH}-debian-12" \
+      "keycloak-26.2.2-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -42,7 +42,7 @@ RUN find / -perm /6000 -type f -exec chmod a-s {} \; || true
 COPY rootfs /
 RUN /opt/bitnami/scripts/java/postunpack.sh
 RUN /opt/bitnami/scripts/keycloak/postunpack.sh
-ENV APP_VERSION="26.1.3" \
+ENV APP_VERSION="26.2.2" \
     BITNAMI_APP_NAME="keycloak" \
     JAVA_HOME="/opt/bitnami/java" \
     PATH="/opt/bitnami/common/bin:/opt/bitnami/java/bin:/opt/bitnami/keycloak/bin:$PATH"
