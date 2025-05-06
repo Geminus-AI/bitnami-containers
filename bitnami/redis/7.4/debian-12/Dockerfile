@@ -17,8 +17,8 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN apt-get update && apt-get install -y ca-certificates curl libgomp1 libssl3 procps
 RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     COMPONENTS=( \
-      "wait-for-port-1.0.8-13-linux-${OS_ARCH}-debian-12" \
-      "redis-7.4.2-1-linux-${OS_ARCH}-debian-12" \
+      "wait-for-port-1.0.8-15-linux-${OS_ARCH}-debian-12" \
+      "redis-7.4.3-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
@@ -39,7 +39,7 @@ RUN ln -s /opt/bitnami/scripts/redis/run.sh /run.sh
 
 COPY rootfs /
 RUN /opt/bitnami/scripts/redis/postunpack.sh
-ENV APP_VERSION="7.4.2" \
+ENV APP_VERSION="7.4.3" \
     BITNAMI_APP_NAME="redis" \
     PATH="/opt/bitnami/common/bin:/opt/bitnami/redis/bin:$PATH"
 
