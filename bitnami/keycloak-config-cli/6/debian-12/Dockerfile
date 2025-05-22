@@ -17,7 +17,7 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN apt-get update && apt-get install -y ca-certificates curl procps zlib1g
 RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     COMPONENTS=( \
-      "jre-21.0.6-10-1-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.7-9-0-linux-${OS_ARCH}-debian-12" \
       "keycloak-config-cli-6.4.0-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
