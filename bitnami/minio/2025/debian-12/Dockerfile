@@ -17,8 +17,8 @@ SHELL ["/bin/bash", "-o", "errexit", "-o", "nounset", "-o", "pipefail", "-c"]
 RUN apt-get update && apt-get install -y ca-certificates curl jq procps
 RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     COMPONENTS=( \
-      "minio-client-2025.4.16-0-linux-${OS_ARCH}-debian-12" \
-      "minio-2025.4.22-0-linux-${OS_ARCH}-debian-12" \
+      "minio-client-2025.5.21-4-linux-${OS_ARCH}-debian-12" \
+      "minio-2025.6.13-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
       if [ ! -f "${COMPONENT}.tar.gz" ]; then \
