@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y ca-certificates curl krb5-user libaio1t
 RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     COMPONENTS=( \
       "wait-for-port-1.0.8-15-linux-${OS_ARCH}-debian-12" \
-      "jre-21.0.7-9-0-linux-${OS_ARCH}-debian-12" \
+      "jre-21.0.8-12-0-linux-${OS_ARCH}-debian-12" \
       "keycloak-26.2.3-0-linux-${OS_ARCH}-debian-12" \
     ) ; \
     for COMPONENT in "${COMPONENTS[@]}"; do \
