@@ -41,6 +41,11 @@ ENV APP_VERSION="2025.4.22" \
     BITNAMI_APP_NAME="minio" \
     PATH="/opt/bitnami/minio-client/bin:/opt/bitnami/minio/bin:$PATH"
 
+COPY assets/minio /opt/bitnami/minio/bin/minio
+RUN chmod +x /opt/bitnami/minio/bin/minio
+COPY assets/mc /opt/bitnami/minio-client/bin/mc
+RUN chmod +x /opt/bitnami/minio-client/bin/mc
+
 VOLUME [ "/bitnami/minio/data", "/certs" ]
 
 EXPOSE 9000 9001
